@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab ARIA et composants</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <main class="lab-wrap">
+    <h1>Lab - ARIA et composants</h1>
+    <p>Le composant semble fonctionner à la souris. Vérifiez ce qu'il expose réellement.</p>
+    <div class="lab-box">
+      <div class="fake-button" role="button" aria-expanded="false" onclick="toggleFaq('details-pass')">Détails du pass</div>
+      <div id="details-pass" hidden>
+        <p>Le pass trois jours inclut les concerts et les ateliers.</p>
+        <a href="../inscription.html">Réserver</a>
+      </div>
+    </div>
+    <h2>Mission</h2>
+    <ol>
+      <li>Testez Tab, Entrée, Espace et l'arbre d'accessibilité.</li>
+      <li>Vérifiez si <code>aria-expanded</code> suit l'état réel.</li>
+      <li>Remplacez le faux bouton par le HTML natif approprié.</li>
+      <li>Décidez quels attributs ARIA restent nécessaires.</li>
+    </ol>
+  </main>
+  <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Festival Horizon</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#scene-main-link">Aller au lien « Cliquez ici »</a>
+  <header class="site-header">
+    <div class="brand">Festival Horizon</div>
+    <div class="fake-button menu-trigger" onclick="toggleMenu()">Menu</div>
+    <div class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="programme.html">Programme</a>
+      <a href="artistes.html">Artistes</a>
+      <a href="inscription.html">Inscription</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <div style="font-size:2.3rem;font-weight:700">Festival Horizon 2026</div>
+        <div style="font-size:1.35rem;margin-top:.5rem">Trois jours de musique, cuisine et rencontres</div>
+        <p class="bad-contrast">Du 18 au 20 septembre, au bord du lac de Montclar.</p>
+        <div class="fake-button" onclick="location.href='inscription.html'">Réserver</div>
+      </div>
+      <img src="assets/Horizon.png">
+    </div>
+  </div>
+
+  <main class="container">
+    <h2>À ne pas manquer</h2>
+    <div class="cards">
+      <article class="card">
+        <img src="assets/concert.png" alt="Concert sur la scène principale devant le public du festival">
+        <h4>Scène principale</h4>
+        <p>Concerts dès 18h.</p>
+        <a id="scene-main-link" href="programme.html">Cliquez ici</a>
+      </article>
+      <article class="card">
+        <img src="assets/food.png" alt="Stands de cuisine et tables en plein air au village gourmand">
+        <h3>Village gourmand</h3>
+        <p>Producteurs locaux et cuisine de rue.</p>
+        <a href="programme.html">Voir les horaires</a>
+      </article>
+      <article class="card">
+        <img src="assets/decor.png" alt="Village du festival avec ateliers, espaces de rencontre et scène en arrière-plan">
+        <h3>Ateliers</h3>
+        <p>Initiations, conférences et rencontres.</p>
+        <a href="programme.html">Découvrir les ateliers</a>
+      </article>
+    </div>
+
+    <h2>Infos pratiques</h2>
+    <p><span class="status-dot open"></span> Camping disponible</p>
+    <p><span class="status-dot closed"></span> Parking complet</p>
+
+    <p class="notice">Besoin d’aide ? Consultez notre <a href="contact.html">page contact</a>.</p>
+  </main>
+
+  <footer>
+    <div>Festival Horizon — 2026</div>
+    <div><a href="contact.html">Contact</a> · <a href="#">Mentions légales</a></div>
+  </footer>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programme - Festival Horizon</title><link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">Festival Horizon</div>
+  <button class="button menu-trigger" onclick="toggleMenu()">Menu</button>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="index.html">Accueil</a><a href="programme.html">Programme</a><a href="artistes.html">Artistes</a><a href="inscription.html">Inscription</a><a href="contact.html">Contact</a>
+  </nav>
+</header>
+<main class="container">
+  <h1>Programme</h1>
+  <h3>Vendredi</h3>
+  <h2>Scène principale</h2>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <tr><td>18:00</td><td>Northern Lights</td><td>Electro</td></tr>
+    <tr><td>20:00</td><td>Orion</td><td>Pop</td></tr>
+    <tr><td>22:00</td><td>Monochrome</td><td>Techno</td></tr>
+  </table>
+  <h3>Samedi</h3>
+  <p>Les activités annulées sont indiquées en <span style="color:red">rouge</span>.</p>
+  <ul>
+    <li>11:00 — Atelier cuisine</li>
+    <li style="color:red">14:00 — Conférence artistes</li>
+    <li>18:00 — Concert acoustique</li>
+  </ul>
+  <div class="fake-button" onclick="openModal()">Informations détaillées</div>
+</main>
+<div id="modal-backdrop" class="modal-backdrop">
+  <div class="modal">
+    <h2>Informations</h2>
+    <p>Les horaires peuvent évoluer selon les conditions météo.</p>
+    <div class="fake-button" onclick="closeModal()">Fermer</div>
+  </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
