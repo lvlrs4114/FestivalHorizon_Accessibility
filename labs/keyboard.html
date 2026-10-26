@@ -1,1 +1,37 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Lab clavier</title><link rel="stylesheet" href="../css/style.css"><style>*:focus{outline:none}</style></head><body><main class="lab-wrap"><h1>Lab — Navigation clavier</h1><div class="lab-box"><a href="#a">Premier lien</a><div class="fake-button" onclick="alert('action')">Action</div><button class="button">Bouton natif</button><a href="#b" tabindex="4">Deuxième lien</a><a href="#c" tabindex="1">Troisième lien</a></div><h2>Questions</h2><ol><li>Peut-on atteindre toutes les actions au clavier ?</li><li>Le focus est-il visible ?</li><li>L’ordre de tabulation est-il logique ?</li><li>Quelles corrections feriez-vous ?</li></ol></main></body></html>
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lab clavier</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<!-- Supprimer le style outline: none est suffisant pour réafficher le focus mais on peut aussi le styliser comme ca -->
+<style>
+    :focus-visible {
+        outline: 3px solid #174ea6;
+        outline-offset: 3px;
+    }
+</style>
+
+<body>
+    <main class="lab-wrap">
+        <h1>Lab — Navigation clavier</h1>
+        <div class="lab-box">
+            <a href="#a">Premier lien</a>
+            <button type="button" class="button" onclick="alert('action')">Action</button>
+            <button type="button" class="button">Bouton natif</button>
+            <a href="#b">Deuxième lien</a>
+            <a href="#c">Troisième lien</a>
+        </div>
+        <h2>Questions</h2>
+        <ol>
+            <li>Peut-on atteindre toutes les actions au clavier ?</li>
+            <li>Le focus est-il visible ?</li>
+            <li>L’ordre de tabulation est-il logique ?</li>
+            <li>Quelles corrections feriez-vous ?</li>
+        </ol>
+    </main>
+</body>
+
+</html>

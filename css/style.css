@@ -19,6 +19,14 @@ a { color: #5b4ca7; }
 .nav a { padding: .45rem .65rem; text-decoration: none; border-radius: .35rem; }
 .nav a:hover { background: #e2d7c4; }
 .hero { padding: 3rem 1.5rem; max-width: 1100px; margin: auto; }
+
+
+.contrast-ok { color: #59534b; background: #fff; }
+.status { font-weight: 700; }
+.status-available { color: #176b32; }
+.status-full { color: #a12626; }
+
+
 .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
 .hero img { width: 100%; border-radius: 1rem; }
 .container { max-width: 1100px; margin: auto; padding: 1.5rem; }
@@ -47,8 +55,13 @@ footer a { color: white; }
 .lab-box { background: white; padding: 1.2rem; border: 1px solid var(--border); margin: 1rem 0; border-radius: .7rem; }
 .small { font-size: .9rem; color: var(--muted); }
 .faq-panel { margin: .35rem 0 1rem; padding: .8rem 1rem; background: #fff; border-left: 3px solid var(--brand); }
-.fixed-demo { width: 980px; display:flex; gap:1rem; }
-.fixed-demo > div { width: 310px; min-width:310px; padding:1rem; background:white; border:1px solid var(--border); }
+
+
+
+.fixed-demo { width: 100%; display:grid; gap:1rem; }
+.fixed-demo > div { min-width:0; padding:1rem; background:white; border:1px solid var(--border); }
+
+
 .moving-banner { animation: slide 2s linear infinite alternate; display:inline-block; }
 @media (prefers-reduced-motion: reduce) {
   .moving-banner { animation: none; }

@@ -1,1 +1,44 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Lab formulaires</title><link rel="stylesheet" href="../css/style.css"></head><body><main class="lab-wrap"><h1>Lab — Formulaires</h1><div class="lab-box"><form><input type="text" placeholder="Prénom"><input type="email" placeholder="Email"><div>Votre formule</div><label><input type="radio" name="f"> 1 jour</label><label><input type="radio" name="f"> 3 jours</label><button class="button">Envoyer</button></form></div><h2>Questions</h2><ol><li>Quels champs n’ont pas de label explicite ?</li><li>Le groupe de boutons radio est-il correctement identifié ?</li><li>Le placeholder suffit-il comme label ?</li><li>Proposez une structure corrigée.</li></ol></main></body></html>
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lab formulaires</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <main class="lab-wrap">
+        <h1>Lab — Formulaires</h1>
+        <div class="lab-box">
+            <form>
+                <div class="form-row">
+                    <label for="first-name">Prénom</label>
+                    <input id="first-name" name="first-name" autocomplete="given-name" required>
+                </div>
+                <div class="form-row">
+                    <label for="email">Adresse e-mail</label>
+                    <input id="email" name="email" type="email" autocomplete="email"
+                        aria-describedby="email-help email-error" required>
+                    <p id="email-help">Exemple : nom@domaine.fr</p>
+                    <p id="email-error" class="error" aria-live="polite"></p>
+                </div>
+                <fieldset>
+                    <legend>Votre formule</legend>
+                    <label><input type="radio" name="pass" value="jour" required> 1 jour</label>
+                    <label><input type="radio" name="pass" value="trois-jours"> 3 jours</label>
+                </fieldset>
+                <button class="button" type="submit">Envoyer</button>
+            </form>
+        </div>
+        <h2>Questions</h2>
+        <ol>
+            <li>Quels champs n’ont pas de label explicite ?</li>
+            <li>Le groupe de boutons radio est-il correctement identifié ?</li>
+            <li>Le placeholder suffit-il comme label ?</li>
+            <li>Proposez une structure corrigée.</li>
+        </ol>
+    </main>
+</body>
+
+</html>

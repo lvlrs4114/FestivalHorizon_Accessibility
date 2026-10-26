@@ -1,1 +1,35 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Lab sémantique</title><link rel="stylesheet" href="../css/style.css"></head><body><main class="lab-wrap"><h1>Lab — HTML sémantique</h1><p>Identifiez ce qui devrait être un titre, une navigation, un lien ou un bouton.</p><div class="lab-box"><div style="font-size:2rem;font-weight:bold">Mon espace</div><div>Accueil | Profil | Paramètres</div><div class="fake-button" onclick="alert('ok')">Enregistrer</div><div onclick="location.href='../index.html'">Retour à l’accueil</div></div><h2>Questions</h2><ol><li>Quels éléments utilisent une mauvaise balise ?</li><li>Quels éléments sont interactifs mais ne l’annoncent pas ?</li><li>Proposez une version utilisant le HTML natif.</li></ol></main></body></html>
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lab sémantique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <main class="lab-wrap">
+        <h1>Lab — HTML sémantique</h1>
+        <p>Identifiez ce qui devrait être un titre, une navigation, un lien ou un bouton.</p>
+        <div class="lab-box">
+            <h2>Mon espace</h2>
+            <nav aria-label="Espace personnel">
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#profil">Profil</a></li>
+                    <li><a href="#parametres">Paramètres</a></li>
+                </ul>
+            </nav>
+            <button type="button" class="button" onclick="alert('ok')">Enregistrer</button>
+            <a href="../index.html">Retour à l’accueil</a>
+        </div>
+        <h2>Questions</h2>
+        <ol>
+            <li>Quels éléments utilisent une mauvaise balise ?</li>
+            <li>Quels éléments sont interactifs mais ne l’annoncent pas ?</li>
+            <li>Proposez une version utilisant le HTML natif.</li>
+        </ol>
+    </main>
+</body>
+
+</html>
