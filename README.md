@@ -1,26 +1,41 @@
-# Festival Horizon — Atelier d’accessibilité web
+# Festival Horizon 2027 — laboratoire SEO
 
-Ce dossier contient un petit site de festival et des pages d’exercice pour apprendre à repérer et corriger des problèmes d’accessibilité.
+Projet de cours SEO B2 en React, TypeScript et Vite. Le site est volontairement un support d’audit : certains défauts SEO sont présents, tandis que la navigation, les formulaires et l’accessibilité restent utilisables.
 
-## Le site Festival Horizon
+## Démarrage
 
-Festival Horizon est le site fil rouge de l’atelier : il présente un festival fictif, son programme, ses artistes, les inscriptions et les informations de contact. Utilisez-le pour observer des situations concrètes et tester l’accessibilité d’un site complet.
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
 
-Pour afficher le site, ouvrez **`index.html`** dans VS Code, faites un clic droit dans le fichier et choisissez **Open with Live Server**. Le navigateur ouvre l’accueil du festival. Utilisez son menu pour consulter les autres pages : `programme.html`, `artistes.html`, `inscription.html` et `contact.html`.
+Le serveur Vite sert les URL côté client : `/`, `/programme`, `/artistes/northern-lights`, `/artistes/orion`, `/artistes/monochrome`, `/concerts/:slug`, `/billetterie`, `/infos-pratiques`, `/archives/2026`.
 
-Le site Festival Horizon sert de support d’observation.
+## Structure
 
-## Les exercices
+- `src/components` : composants partagés, navigation, réservation et métadonnées.
+- `src/pages` : une page par URL principale.
+- `src/hooks` : effets réutilisables, dont le titre de page.
+- `src/data` : artistes et programmation 2027.
+- `public/assets` : ressources du festival.
+- `public/robots.txt`, `public/sitemap.xml` : supports TP technique.
+- `exercises` : neuf TP et progression de deux séances.
+- `scripts` : contrôles simples, démo HTTP réelle et génération HTML statique de démonstration.
 
-Les consignes se trouvent dans [`exercises/`](exercises/). Ouvrez le fichier Markdown correspondant à l’exercice dans VS Code pour lire les consignes. Les exercices pratiques se font dans les pages du dossier **`labs/`** : ouvrez le fichier HTML indiqué dans la consigne, puis choisissez **Open with Live Server**. Par exemple, pour travailler sur le reflow, lancez `labs/reflow.html` avec Live Server.
+## Limites
 
-Modifiez uniquement les fichiers `labs/` indiqués dans chaque consigne. Vous pouvez ainsi comparer les pages d’exercice au site Festival Horizon sans altérer le site fil rouge.
+Le site est rendu côté client. Inspecter View Source et le DOM après JavaScript. L’audit Lighthouse local et la validation des fichiers ne prouvent pas l’indexation Google. Search Console demande une propriété publique vérifiée. Un sitemap ne garantit pas l’indexation ; canonical exprime une préférence.
 
-## Démarrage rapide
+URL publique fictive centralisée dans `src/config/site.ts` : `https://festival-horizon.example`.
 
-1. Ouvrez `index.html` avec **Live Server** pour parcourir Festival Horizon.
-2. Ouvrez une consigne dans `exercises/`.
-3. Lancez avec **Live Server** le fichier HTML correspondant dans `labs/`.
-4. Testez la page avant et après vos modifications, au clavier, au zoom ou dans l’arbre d’accessibilité, selon l’exercice.
+## Supports d'analyse locale
 
-Le sujet de l’examen papier sera distribué en classe.
+- `npm run seo:check` vérifie quelques fichiers et signale certains constats statiques ; il ne juge pas la pertinence éditoriale.
+- `npm run seo:sitemap` vérifie la structure XML et avertit sur couverture, URL inconnues, doublons et cohérence canonical. Les écarts sont intentionnels et ne bloquent pas `npm run build`.
+- `npm run seo:http-demo` démarre un serveur distinct sur `127.0.0.1:4174`. Exemples : `/ancienne-programmation` (301), `/inconnue` (404), `/ressources/archive-2025` (410), `/` (200). Inspecter avec `curl -I`.
+- `npm run seo:http-check` vérifie localement la logique des réponses sans ouvrir de port, utile dans les environnements qui interdisent l’écoute réseau.
+- `npm run seo:prerender` construit l’application puis rend `FestivalIntro`, le composant React partagé avec l’accueil, dans `dist/prerender-demo/index.html`.
+
+Les liens internes utilisent des routes Vite côté client ; le fallback SPA peut répondre HTTP 200 avec le shell HTML pour une URL inconnue. Ce statut serveur est différent du contenu « Page introuvable » affiché par React. Les métadonnées et balisages ajoutés par les effets React apparaissent après exécution JavaScript, pas dans la réponse HTML initiale.

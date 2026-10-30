@@ -1,0 +1,2 @@
+import {useState} from 'react'
+export default function InteractionDemo(){const[result,setResult]=useState('');function run(){const start=performance.now();let value=0;while(performance.now()-start<120){for(let i=0;i<1000;i++)value+=Math.sqrt(i)}setResult(`Ambiance prête (${Math.round(value)} points lumineux).`)}return <section className="interaction-demo"><h2>Préparer les lumières</h2><p>Visualisez une simulation des effets du festival.</p><button type="button" className="button" onClick={run}>Lancer la simulation</button>{result&&<p role="status">{result}</p>}</section>}

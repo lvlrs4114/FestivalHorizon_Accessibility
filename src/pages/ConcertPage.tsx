@@ -1,0 +1,4 @@
+import {useEffect} from 'react'
+import {concerts} from './routeData'
+import eventMarkup from '../data/eventMarkup.json'
+export default function ConcertPage({slug}:{slug:string}){const c=concerts.find(item=>item.slug===slug);useEffect(()=>{if(!c||c.id!==1)return;const node=document.createElement('script');node.type='application/ld+json';node.dataset.lesson='event';node.textContent=JSON.stringify(eventMarkup);document.head.append(node);return()=>node.remove()},[c]);if(!c)return <section className="section"><h1>Concert introuvable</h1><a href="/programme">Voir le programme</a></section>;return <section className="section"><p className="eyebrow">Concert · Festival Horizon 2027</p><h1>{c.artist}</h1><p>{c.date} à {c.time} · {c.stage} · Montclar</p><p>Un rendez-vous musical au bord du lac. Retrouvez l’artiste pour une soirée de festival et préparez votre venue avec les informations du programme.</p><a className="button" href="/billetterie">Billetterie</a></section>}

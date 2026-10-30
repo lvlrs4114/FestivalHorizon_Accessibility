@@ -1,0 +1,4 @@
+import { days, genres } from '../data/program'
+import { festivalEdition } from '../data/festival'
+type Props={day:string;genre:string;onDayChange:(v:string)=>void;onGenreChange:(v:string)=>void}
+export default function ProgramFilters({day,genre,onDayChange,onGenreChange}:Props){return <div className="filters"><div className="filter-control"><label htmlFor="filter-day">Jour du festival</label><select id="filter-day" value={day} onChange={e=>onDayChange(e.target.value)}>{days.map(d=><option key={d} value={d}>{d==='Tous les jours'?d:festivalEdition.dateLabels[d as keyof typeof festivalEdition.dateLabels]}</option>)}</select></div><div className="filter-control"><label htmlFor="filter-genre">Style musical</label><select id="filter-genre" value={genre} onChange={e=>onGenreChange(e.target.value)}>{genres.map(g=><option key={g} value={g}>{g}</option>)}</select></div></div>}

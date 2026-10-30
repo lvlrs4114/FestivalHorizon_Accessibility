@@ -1,0 +1,2 @@
+import {handleDemoRequest} from './http-demo.mjs'
+for(const [url,expected] of [['/',200],['/ancienne-programmation',301],['/inconnue',404],['/ressources/archive-2025',410]]){let status,headers={},body='';const response={writeHead(code,values={}){status=code;headers=values},end(value=''){body=value}};handleDemoRequest({url,headers:{host:'localhost'}},response);if(status!==expected)throw new Error(`${url}: status ${status}, attendu ${expected}`);console.log(`${status} ${url}${headers.Location?` → ${headers.Location}`:''}`)}

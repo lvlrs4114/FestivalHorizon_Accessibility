@@ -1,0 +1,10 @@
+import {readFileSync,existsSync} from 'node:fs'
+const metadata=readFileSync('src/data/pageMetadata.ts','utf8'),robots=readFileSync('public/robots.txt','utf8'),program=readFileSync('src/data/program.ts','utf8')
+const checks=[['Vite entry document',readFileSync('index.html','utf8').includes('<div id="root"></div>')],['robots file exists',existsSync('public/robots.txt')],['sitemap file exists',existsSync('public/sitemap.xml')],['artist and concert routes exist',existsSync('src/pages/ArtistPage.tsx')&&existsSync('src/pages/ConcertPage.tsx')],['React pre-render entry exists',existsSync('scripts/prerender-entry.jsx')]]
+for(const [label,ok]of checks)console.log(`${ok?'OK':'ÉCHEC'} ${label}`)
+const titles=[...metadata.matchAll(/title:\s*'([^']+)'/g)].map(m=>m[1]);if(new Set(titles).size<titles.length)console.warn('Diagnostic : titles dupliqués dans la configuration.')
+if(/Disallow:\s*\/artistes\/monochrome/.test(robots))console.warn('Diagnostic : une page artiste est exclue du crawl.')
+try{const event=JSON.parse(readFileSync('src/data/eventMarkup.json','utf8'));console.log(`JSON-LD source : JSON valide, type ${event['@type']??'(type absent)'}. Comparez propriétés et contenu visible.`);if(event.startDate?.startsWith('2026'))console.warn('Diagnostic Event : date structurée différente de l’édition 2027.');if(!event.location?.address)console.warn('Diagnostic Event : adresse du lieu à examiner.');if(!event.offers)console.warn('Diagnostic Event : aucune offre structurée déclarée.')}catch{console.error('JSON-LD source : JSON invalide');process.exitCode=1}
+const ids=[...readFileSync('src/data/artists.ts','utf8').matchAll(/id:\s*'([^']+)'/g)].map(m=>m[1]),slugs=[...program.matchAll(/slug:\s*'([^']+)'/g)].map(m=>m[1]);console.log(`Routes de données : ${ids.length} artistes, ${slugs.length} concerts.`)
+console.log('Limites : contrôle statique uniquement. Il ne juge pas la qualité éditoriale et ne confirme pas l’indexation. Vérifiez les métadonnées dans le DOM après exécution de React.')
+if(checks.some(([,ok])=>!ok))process.exitCode=1

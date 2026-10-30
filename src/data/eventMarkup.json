@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Northern Lights au Festival Horizon",
+  "startDate": "2026-09-17T18:30:00+02:00",
+  "location": {
+    "@type": "Place",
+    "name": "Grande scène"
+  },
+  "description": "Concert au Festival Horizon 2027",
+  "url": "https://festival-horizon.example/concerts/northern-lights-vendredi"
+}

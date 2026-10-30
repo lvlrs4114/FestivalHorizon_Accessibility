@@ -1,0 +1,1 @@
+export default function ArchivePage(){return <section className="section"><h1>Archives Festival Horizon 2026</h1><p>Retour sur l’édition du 18 au 20 septembre 2026.</p><a href="/programme">Programme 2027</a></section>}

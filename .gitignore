@@ -1,5 +1,5 @@
+/node_modules/
+/dist/
+/tsconfig.tsbuildinfo
 /enseignant/
-/react/CORRECTION_ENSEIGNANT.md
-/react/node_modules/
-/react/dist/
-/react/tsconfig.tsbuildinfo
+.idea/
