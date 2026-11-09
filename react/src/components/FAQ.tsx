@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 const questions = [
   ['Peut-on venir avec de la nourriture ?', 'Oui, un petit pique-nique est accepté. Des points d’eau et un village gourmand sont disponibles sur place.'],
   ['Les billets sont-ils remboursables ?', 'Les billets ne sont pas remboursables, mais ils peuvent être cédés à une autre personne.'],
@@ -8,18 +6,19 @@ const questions = [
 ]
 
 export default function FAQ() {
-  const [opened, setOpened] = useState<number | null>(0)
   return (
     <section className="section faq-section" id="faq">
       <div className="section-heading"><div><p className="eyebrow">Avant de partir</p><h2>Une question ?</h2></div><p className="section-aside">Les infos pratiques<br />pour profiter sereinement.</p></div>
       <div className="faq-list">
         {questions.map(([question, answer], index) => (
-          <div className={`faq-item ${opened === index ? 'faq-item-open' : ''}`} key={question}>
-            <div className="faq-question" onClick={() => setOpened(opened === index ? null : index)}>
-              <span className="faq-index">0{index + 1}</span><span>{question}</span><span className="faq-plus">{opened === index ? '−' : '+'}</span>
-            </div>
-            {opened === index && <p className="faq-answer">{answer}</p>}
-          </div>
+          <details className="faq-item" key={question} open={index === 0}>
+            <summary className="faq-question">
+              <span className="faq-index" aria-hidden="true">0{index + 1}</span>
+              <span>{question}</span>
+              <span className="faq-plus" aria-hidden="true">+</span>
+            </summary>
+            <p className="faq-answer">{answer}</p>
+          </details>
         ))}
       </div>
     </section>

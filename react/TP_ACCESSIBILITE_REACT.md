@@ -40,7 +40,7 @@ Travaillez dans `src/components/TicketForm.tsx`.
 - Associez les libellés aux champs, choisissez les types et attributs utiles, puis testez la saisie et les suggestions du navigateur.
 - Ajoutez une structure de groupe compréhensible pour les choix de billet.
 - Faites en sorte que les erreurs indiquent clairement le champ concerné et soient perceptibles au clavier et au lecteur d’écran.
-- Comparez la validation native HTML à la validation faite par React. Testez un champ vide, un e-mail incorrect, une quantité hors limites et une case non cochée.
+- Comparez la validation native HTML à la validation faite par React. Testez un champ vide, un e-mail incorrect, une quantité hors limites ou décimale (par exemple `1.5`) et une case non cochée. La quantité de billets doit être un nombre entier compris entre 1 et 8 ; le message d’erreur doit expliquer cette règle.
 - Observez le résumé `FormData` après une soumission valide.
 
 Expliquez avec un exemple du formulaire la différence entre `id`, `htmlFor`, `name`, `value` et `type`. Dans React, `htmlFor` sert à écrire l’attribut HTML `for` d’un label.
@@ -56,25 +56,7 @@ Examinez `FAQ.tsx` et `ProgramFilters.tsx`.
 
 Vérifiez le nom, le rôle et l’état dans Firefox Accessibility Inspector, puis testez le parcours avec Tab, Entrée, Espace et les flèches.
 
-## Partie 5 — React et gestion du focus (complément avancé)
-
-Dans `BookingModal.tsx` et `App.tsx`, observez ce qui se passe à l’ouverture et à la fermeture de la confirmation.
-
-- Où se trouve le focus quand la fenêtre apparaît ? Peut-on parcourir son contenu sans sortir derrière ?
-- Testez Escape et la restauration du focus vers le bouton qui a lancé la réservation.
-- Étudiez `<dialog>`, `showModal()`, `close()`, `useRef()` et le cycle de rendu React. Ne déplacez le focus que lorsque le dialogue est réellement ouvert.
-- Les messages de filtre, de validation et de confirmation sont-ils annoncés sans déplacer le focus ? Comparez `aria-live`, `role="status"` et `role="alert"`.
-
-## Partie 6 — CSS accessible (complément)
-
-Dans `src/styles/global.css` :
-
-- Repérez les couleurs de texte les moins contrastées et vérifiez-les avec un outil de contraste.
-- Rétablissez un indicateur de focus visible cohérent avec le design (`:focus-visible`).
-- Vérifiez l’animation à l’aide du réglage de réduction des mouvements du système (`prefers-reduced-motion`).
-- Zoomez fortement et réduisez la largeur de la fenêtre. Le contenu et les contrôles restent-ils lisibles et accessibles ?
-
-## Partie 7 — Audit final (15 min)
+## Partie 5 — Audit final (15 min)
 
 Relancez vos tests clavier, lecteur d’écran, inspecteur Firefox et Lighthouse. Complétez le tableau initial avec les corrections réalisées. Citez au moins un défaut détecté en test manuel qui n’était pas évident dans le rapport Lighthouse, et expliquez pourquoi les deux méthodes se complètent.
 
@@ -88,14 +70,10 @@ Relancez vos tests clavier, lecteur d’écran, inspecteur Firefox et Lighthouse
 4. Structurer le groupe de billets et rendre ses erreurs compréhensibles (formulaire).
 5. Ajouter des en-têtes et un titre au tableau du programme.
 6. Rendre la FAQ opérable au clavier et annoncer son état.
-7. Rendre les messages dynamiques perceptibles sans déplacer le focus.
-8. Rétablir un focus visible.
 
 ## Exercices complémentaires
 
-- Gérer complètement l’ouverture, le piège de focus, Escape et la restauration du focus de la modale avec `<dialog>`.
 - Rendre le dropdown personnalisé accessible au clavier, ou le remplacer par un élément natif.
-- Améliorer les alternatives d’images et le contraste.
+- Améliorer les alternatives d’images.
 - Ajouter les indications d’autocomplétion et expérimenter les attributs de validation HTML.
-- Vérifier l’adaptation au zoom et respecter `prefers-reduced-motion`.
 - Refaire un audit approfondi avec plusieurs navigateurs et technologies d’assistance.
