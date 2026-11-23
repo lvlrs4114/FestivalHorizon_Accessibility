@@ -11,7 +11,9 @@
     "seo:http-demo": "node scripts/http-demo.mjs",
     "seo:prerender": "npm run build && node scripts/prerender-demo.mjs",
     "seo:sitemap": "node scripts/seo-sitemap.mjs",
-    "seo:http-check": "node scripts/http-check.mjs"
+    "seo:http-check": "node scripts/http-check.mjs",
+    "mission:4": "node scripts/mission-4-check.mjs",
+    "mission:5": "node scripts/mission-5-check.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

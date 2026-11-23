@@ -1,31 +1,28 @@
-# TP7 — React et indexation
+# 🤖 TP7 — Dans la peau de Googlebot
 
-Observe les contenus effectivement présents à chaque étape du rendu.
+Que voit-on dans le code source, et que construit React ? Ouvrez l’accueil du site. Faites les niveaux dans l’ordre.
 
-## Exercice 1 — Ce que reçoit le navigateur
+## 🟢 Niveau 1 — La page et son miroir
 
-**À examiner :** une page artiste et une page programme, View Source, Elements et navigateur sans JavaScript.
+1. Sur l’accueil, repérez le titre « Trois jours à l’horizon ».
+2. Ouvrez le code source : clic droit → **Afficher le code source** (Chrome/Firefox; Ctrl+U).
+3. Cherchez le titre (Ctrl+F).
+4. Revenez à la page, ouvrez DevTools → **Elements/Inspecteur**, puis retrouvez le titre dans le DOM après le chargement de React.
+5. **Réussi si :** vous expliquez pourquoi le titre apparaît dans la page alors qu’il est absent du code source initial.
 
-Pour chaque page, compare code source initial, DOM après exécution, métadonnées et contenu visible. Désactive JavaScript et relève les différences factuelles dans un tableau.
+## 🟡 Niveau 2 — Un fragment HTML prêt d’avance
 
-| Page | Source initiale | DOM après JS | Sans JS |
-|---|---|---|---|
-| | | | |
+1. Dans le terminal du projet, lancez `npm run seo:prerender`.
+2. Ouvrez `dist/prerender-demo/index.html` dans l’éditeur.
+3. Trouvez le titre et le paragraphe déjà présents dans le HTML, à l’intérieur de `<main>`.
+4. **Réussi si :** vous expliquez pourquoi ce fragment est déjà là avant le chargement dans un navigateur.
 
-**Vérification :** chaque cellule décrit une observation reproductible, pas une conclusion générale sur les moteurs.
+Cette commande pré-rend seulement `FestivalIntro` dans une page de démonstration autonome. Elle ne pré-rend pas l’accueil complet et n’ajoute pas ce HTML au site.
 
-## Exercice 2 — CSR et pré-rendu
+## 🔴 Niveau 3 — Changez la vitrine (bonus)
 
-Lance `npm run seo:prerender` et retrouve la sortie générée. Compare le HTML de `FestivalIntro.tsx` dans l’application et dans le document pré-rendu. Le script ne pré-rend pas toute l’application.
+1. Modifiez une phrase factuelle dans `src/components/FestivalIntro.tsx`.
+2. Relancez `npm run seo:prerender`.
+3. **Réussi si :** la nouvelle phrase apparaît dans l’accueil et dans le fichier HTML régénéré.
 
-**Vérification :** identifie à quel moment le contenu devient disponible dans chacun des deux cas et cite les fichiers examinés.
-
-## Exercice 3 — Modifier un contenu partagé
-
-Modifie `FestivalIntro.tsx` avec une information réelle du festival. Vérifie le changement dans React, regénère le HTML pré-rendu et retrouve-le dans la sortie. Explique pourquoi modifier le composant seul ne met pas à jour le fichier déjà généré.
-
-**Vérification :** même changement repérable dans l’application et la sortie générée après relance du script.
-
-## Bonus — Choisir une stratégie de rendu
-
-Compare CSR, SSR et SSG pour plusieurs pages du festival. Justifie les choix par la fraîcheur des données et le contenu observé ; plusieurs réponses argumentées sont recevables.
+**À retenir :** CSR construit l’interface dans le navigateur; le pré-rendu génère du HTML à l’avance. Ici, la commande illustre ce principe sur `FestivalIntro` seulement; elle ne transforme pas le site en SSG. Le SSR sera expliqué en classe. Un site CSR peut être indexé par un moteur qui exécute JavaScript.

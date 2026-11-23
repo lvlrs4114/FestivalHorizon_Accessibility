@@ -1,39 +1,31 @@
-# TP6 — Performances
+# 🏎️ TP6 — Speedrun performance
 
-Mesure dans des conditions comparables avant de modifier, puis répète le protocole.
+Une image lourde ralentit peut-être la billetterie. Commencez par mesurer, sans toucher au code.
 
-## Exercice 1 — Mesures initiales
+## 🟢 Niveau 1 — Trouver le poids lourd
 
-**À examiner :** version buildée avec `npm run build` puis `npm run preview`, Lighthouse.
+1. Ouvrez l’accueil, appuyez sur **F12** et cliquez **Network** (Réseau).
+2. Cliquez le filtre **Img**, puis rechargez la page.
+3. Triez par **Size** et notez le poids de la plus grosse image.
+4. **Réussi :** relevez la ligne Network et son poids.
 
-Réalise deux audits comparables. Note LCP, CLS, TBT, conditions de mesure et ressources problématiques ; conserve les rapports.
+## 🟡 Niveau 2 — Optimiser
 
-**Vérification :** deux mesures documentées sans score de référence inventé.
+1. Dans Network, ouvrez la plus grosse image dans un nouvel onglet; ouvrez la console DevTools.
+2. Pour la correction, utilisez l’image du hero `Horizon.png` : convertissez-la en WebP avec le snippet ci-dessous; enregistrez le fichier dans `public/assets/`.
+3. Dans `src/components/Hero.tsx`, remplacez le chemin de l’image; vérifiez l’affichage et le texte alternatif.
+4. Rechargez avec Network ouvert : comparez les poids avant/après. **Réussi :** l’image s’affiche et la ressource demandée est plus légère.
 
-## Exercice 2 — Optimiser les images
+```js
+const i=new Image();i.src='/assets/Horizon.png';i.onload=()=>{const c=document.createElement('canvas');c.width=i.naturalWidth;c.height=i.naturalHeight;c.getContext('2d').drawImage(i,0,0);c.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Horizon.webp';a.click()},'image/webp',0.82)}
+```
 
-**À examiner :** onglet Network, `public/assets/Horizon.png`, `Hero.tsx` et images secondaires.
+## 🔴 Niveau 3 — Bonus : page stable
 
-Repère les images pertinentes, produis une variante optimisée et adapte le JSX. Déduis la stratégie de chargement de la position de chaque image. Préserve un texte alternatif accessible et compare les ressources avant/après.
+Sur l’accueil, ralentissez le réseau dans Network, cochez **Disable cache**, puis rechargez. Observez le hero `Horizon.webp` : aucun espace n’est réservé avant son chargement, donc le contenu situé dessous se déplace. Dans `Hero.tsx` et le CSS du hero, réservez l’espace avec un ratio ou une hauteur stable, puis comparez dans Performance.
 
-**Vérification :** poids et rendu comparés ; image principale visible traitée selon son rôle, images secondaires selon leur position.
+**Score rapide :** 1 image repérée · 1 poids avant/après · 1 image optimisée et visible · +1 bonus CLS ou interaction. Le poids réduit ne garantit pas à lui seul un meilleur LCP.
 
-## Exercice 3 — Déplacement de mise en page
+## Référence facultative
 
-**À examiner :** `LayoutShiftImage.tsx`, Performance avec réseau ralenti.
-
-Observe le chargement, enregistre une trace et identifie l’origine du déplacement. Corrige le composant pour stabiliser la mise en page dès le premier affichage.
-
-**Vérification :** comparer les événements de déplacement avant/après dans une trace comparable.
-
-## Exercice 4 — Interaction bloquante
-
-**À examiner :** `InteractionDemo.tsx`, Performance.
-
-Enregistre l’interaction, identifie la tâche qui retarde la réponse, modifie son traitement puis compare les traces. Le résultat fonctionnel doit rester compréhensible.
-
-**Vérification :** trace après modification montrant une tâche réduite ou fractionnée ; durées mesurées, jamais supposées.
-
-## Bonus — Variabilité
-
-Répète plusieurs audits et explique les écarts observés à partir du protocole, du cache, du réseau ou de la machine.
+Un poids plus faible peut réduire les données transférées; mesurez le LCP avant/après pour savoir si l’élément principal en bénéficie. Réserver la géométrie d’une image évite un déplacement (CLS). Une longue tâche JavaScript peut bloquer les entrées et affecter la réactivité; une trace locale ne mesure pas à elle seule l’INP terrain. Comparez dans des conditions identiques.

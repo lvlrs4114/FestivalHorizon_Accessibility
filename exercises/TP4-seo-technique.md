@@ -1,55 +1,34 @@
-# TP4 — SEO technique
+# 🚨 TP4 — Opération sauver le festival
 
-Pour chaque enquête, établis d’abord ton diagnostic, puis modifie et valide.
+Une fiche artiste existe, mais Google peut-il l’explorer ? Commencez au vert.
 
-## Exercice 1 — Robots et indexation
+## 🟢 Niveau 1 — Trouver la page bloquée
 
-**À examiner :** `public/robots.txt`, `src/data/pageMetadata.ts`, directives du DOM.
+1. Dans l’explorateur de fichiers, ouvrez `public/robots.txt`.
+2. Repérez la ligne qui bloque une URL `/artistes/...`.
+3. Ouvrez cette URL dans le site et vérifiez que la fiche existe.
+4. **Réussi :** montrez la règle et dites en une phrase ce qu’elle empêche Google de faire.
 
-Politique du scénario : les pages publiques principales et l’archive 2026 doivent pouvoir être explorées et rester éligibles à l’indexation. Identifie les configurations contraires à cette politique, corrige-les et confronte ton hypothèse au script de diagnostic.
+## 🟡 Niveau 2 — Réparer
 
-**Vérification :** inspecte robots et directives dans le DOM après correction ; explique toute alerte restante.
+1. Modifiez ou retirez la règle qui bloque la fiche existante.
+2. Enregistrez, puis lancez `npm run mission:4 -- --robots`.
+3. **Réussi :** le contrôle robots affiche `[OK]`. Le script complet vérifie aussi le sitemap et les canonical; le niveau jaune ne dépend que de robots.
+4. Expliquez : robots.txt agit sur le crawl; il ne commande pas directement l’indexation.
 
-## Exercice 2 — Reconstituer le sitemap
+<details><summary>Indice 1</summary>La règle commence par `Disallow`.</details>
+<details><summary>Indice 2</summary>Comparez le chemin bloqué avec les URL visibles dans la section artistes.</details>
+<details><summary>Indice 3</summary>Une règle Disallow cible une fiche artiste existante; adaptez-la pour autoriser son exploration.</details>
 
-**À examiner :** routes dans `src/App.tsx`, `artists.ts`, `program.ts`, `public/sitemap.xml`.
+## 🔴 Niveau 3 — Bonus : sitemap suspect
 
-Reconstitue les URL publiques pertinentes à partir des routes et données. Compare cet inventaire au sitemap et relève omissions et entrées obsolètes avant de lancer `npm run seo:sitemap`. Corrige le sitemap.
+1. Comparez `public/sitemap.xml` aux routes dans `src/App.tsx` et aux données artistes/concerts.
+2. Corrigez les URL manquantes ou inconnues; gardez les URL sur le domaine configuré.
+3. Lancez `npm run mission:4` puis `npm run seo:sitemap`.
+4. **Réussi :** le validateur mission affiche tous les contrôles `[OK]`; le diagnostic sitemap ne signale plus d’écart.
 
-**Vérification :** compare ton inventaire au résultat du script, puis contrôle les URL et leur domaine.
+**Score rapide :** 1 diagnostic · 1 correction robots · 1 validation robots · +1 bonus sitemap. Les canonical accueil/programme sont déjà cohérentes : vérifiez-les, ne les modifiez pas pour créer un défaut.
 
-## Exercice 3 — Canonical cohérentes
+## Référence facultative
 
-**À examiner :** les canonical du DOM sur `/programme` et `/`, `src/data/pageMetadata.ts`, `src/config/site.ts`.
-
-Compare ces deux pages avec leur route et corrige les incohérences observées. Le périmètre obligatoire se limite à ces deux routes ; n’ajoute pas de canonical aux routes dynamiques.
-
-**Vérification :** inspecte `link[rel="canonical"]` après rendu sur les deux pages et vérifie qu’il s’agit d’une URL absolue cohérente avec chacune. Ne confonds pas canonical et redirection.
-
-## Exercice 4 — Observer les statuts HTTP
-
-**À examiner :** serveur `npm run seo:http-demo`, commandes `curl -I`.
-
-Teste `http://localhost:4174/`, `/ancienne-programmation`, `/inconnue` et `/ressources/archive-2025`. Note statut, éventuel `Location`, signification et conséquence possible pour un robot. Compare si possible une URL inconnue sur Vite et la réponse de la démo.
-
-**Vérification :** conserve les en-têtes observés ; distingue statut HTTP et écran React.
-
-## Exercice 5 — Choisir le mécanisme adapté
-
-Pour chaque situation, note le comportement HTTP ou la directive attendue et justifie ton choix.
-
-1. `/artistes/northern-lights` a été remplacée définitivement par `/artistes/northern-lights-live`. L’ancienne page ne doit plus être consultée ; le nouvel URL conserve le contenu.
-2. `/archives/2024` n’a jamais existé et aucune archive de cette édition n’est disponible.
-3. `/ressources/archive-2025` a été retirée durablement. L’éditeur veut signaler explicitement ce retrait, mais accepte qu’un serveur réponde comme à une ressource introuvable.
-4. `/programme` et `/programme?jour=vendredi` restent accessibles ; le contenu est équivalent et l’éditeur veut privilégier l’URL sans paramètre dans les résultats.
-5. Une page interne de confirmation de réservation doit rester accessible à l’utilisateur et crawlable, mais ne doit pas être proposée dans les résultats.
-
-**Vérification :** justifie chaque choix à partir de l’existence de la destination, de la permanence du changement et de l’objectif éditorial. Pour le cas 3, accepter 404 ou 410 si l’étudiant explique le choix ; aucun des deux n’est universellement obligatoire.
-
-## Bonus — Redirection temporaire
-
-Explique la différence entre 301 et 302 pour une URL déplacée temporairement. Le serveur de démonstration ne fournit pas d’endpoint 302 à tester.
-
-## Bonus — Page de campagne
-
-Pour une campagne temporaire fictive, définis une politique d’indexation et indique les directives nécessaires selon qu’elle constitue ou non un duplicata.
+`robots.txt` règle l’exploration (crawl), pas directement l’indexation. `noindex` concerne l’indexation et doit être lisible par le robot. Une canonical indique une URL préférée; elle ne garantit pas l’indexation. Le script HTTP illustre 200, 301, 404 et 410; `npm run seo:http-check` le vérifie sans serveur.

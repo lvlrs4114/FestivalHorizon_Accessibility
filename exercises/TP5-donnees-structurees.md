@@ -1,29 +1,29 @@
-# TP5 — Données structurées
+# 🕵️ TP5 — Le faux concert
 
-Compare le JSON-LD au contenu réellement affiché. Les propriétés facultatives doivent être justifiées.
+Un concert affiche une information différente de celle envoyée aux moteurs. Trouvez-la d’abord à l’écran.
 
-## Exercice 1 — Auditer l’Event existant
+## 🟢 Niveau 1 — Trouver l’erreur
 
-**À examiner :** `src/data/eventMarkup.json`, page du concert correspondant, `src/data/program.ts` et autres données utiles.
+1. Ouvrez `/concerts/northern-lights-vendredi` dans le site.
+2. Comparez l’artiste, la date et le lieu affichés avec `src/data/program.ts`.
+3. Dans l’éditeur, ouvrez `src/data/eventMarkup.json` : ce fichier fournit le JSON-LD injecté sur ce concert.
+4. **Réussi :** montrez une valeur qui ne correspond pas entre les sources.
 
-Compare nom, date, heure, lieu, description et URL. Note uniquement les écarts constatés entre données et page.
+## 🟡 Niveau 2 — Corriger
 
-**Vérification :** chaque écart cite ses deux sources ; les informations non disponibles restent inconnues.
+1. Corrigez la valeur trouvée dans `src/data/eventMarkup.json` à partir des données du projet.
+2. Lancez `npm run mission:5` pour vérifier syntaxe JSON et cohérence des champs contrôlés.
+3. Rechargez la page; DevTools → Elements → cherchez `application/ld+json` et comparez avec le texte visible.
+4. **Réussi :** commande `[OK]`, script présent dans le DOM, information cohérente.
 
-## Exercice 2 — Corriger l’Event
+<details><summary>Indice</summary>Comparez le début de `startDate` avec l’année donnée par le programme.</details>
 
-Corrige l’objet JSON-LD à partir des incohérences trouvées. `offers` est facultatif dans ce scénario : le pass journalier n’est pas nécessairement un billet autonome pour le concert ; ajoute-le uniquement si tu peux justifier clairement cette relation.
+## 🔴 Niveau 3 — Bonus : un deuxième concert
 
-**Vérification :** valide la syntaxe JSON, puis compare les propriétés à la page et au programme.
+Ajoutez un JSON-LD cohérent pour le concert d’Orion du vendredi, depuis `src/data/program.ts` et `src/data/festival.ts`; injectez-le uniquement sur sa page. Validez le JSON et vérifiez-le dans le DOM. **N’inventez pas** adresse, prix de billet ou données absentes.
 
-## Exercice 3 — Ajouter un Event
+**Score rapide :** 1 erreur trouvée · 1 correction · 1 preuve (commande + DOM) · +1 bonus Orion.
 
-**À examiner :** fiche et données du concert d’Orion, `ConcertPage.tsx`.
+## Référence facultative
 
-Ajoute un JSON-LD cohérent pour ce concert en réutilisant les données disponibles. Valide la syntaxe et utilise un outil de validation Schema.org disponible ; note les limites de la validation locale.
-
-**Vérification :** valeurs cohérentes avec la fiche et le programme ; JSON valide et visible dans le DOM.
-
-## Bonus — Choisir un type Schema.org
-
-Compare Event et MusicEvent pour un concert décrit par les données disponibles. Justifie le type retenu sans ajouter de propriétés non étayées.
+JSON-LD structure des informations pour les systèmes; sa syntaxe valide ne prouve pas l’exactitude. Les valeurs doivent correspondre au contenu visible et aux données fiables. Un balisage valide ne garantit pas un résultat enrichi.
